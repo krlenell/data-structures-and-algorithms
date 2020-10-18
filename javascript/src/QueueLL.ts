@@ -1,5 +1,4 @@
 import LinkedList from './LinkedList'
-import LinkedListNode from './LinkedListNode'
 
 export default class QueueLL<T>{
   line: LinkedList<T>
