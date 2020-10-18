@@ -80,6 +80,11 @@ export default class LinkedList<T> {
     curr = curr.next
     while(curr){
       if(curr.value === value){
+        if(curr === this.tail){
+          this.tail = prev
+          prev.next = null
+          return true
+        }
         const next = curr.next
         prev.next = next
         return true
@@ -108,11 +113,26 @@ export default class LinkedList<T> {
     return returnArray
   }
 
-  *traverse() {
+  *traverse(): Generator<T> {
     let node = this.head
     while(node){
-      yield node
+      yield node.value
       node = node.next
+    }
+  }
+
+  *reverseTraversal(): Generator<T> {
+    if(this.tail && this.head){
+      let curr = this.tail
+      while(curr !== this.head){
+        let prev = this.head
+        while(prev.next !== curr && prev.next){
+          prev = prev.next
+        }
+        yield curr.value
+        curr = prev
+      }
+      yield curr.value
     }
   }
 }

@@ -104,6 +104,11 @@ var LinkedList = /** @class */ (function () {
         curr = curr.next;
         while (curr) {
             if (curr.value === value) {
+                if (curr === this.tail) {
+                    this.tail = prev;
+                    prev.next = null;
+                    return true;
+                }
                 var next = curr.next;
                 prev.next = next;
                 return true;
@@ -138,12 +143,39 @@ var LinkedList = /** @class */ (function () {
                     _a.label = 1;
                 case 1:
                     if (!node) return [3 /*break*/, 3];
-                    return [4 /*yield*/, node];
+                    return [4 /*yield*/, node.value];
                 case 2:
                     _a.sent();
                     node = node.next;
                     return [3 /*break*/, 1];
                 case 3: return [2 /*return*/];
+            }
+        });
+    };
+    LinkedList.prototype.reverseTraversal = function () {
+        var curr, prev;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!(this.tail && this.head)) return [3 /*break*/, 5];
+                    curr = this.tail;
+                    _a.label = 1;
+                case 1:
+                    if (!(curr !== this.head)) return [3 /*break*/, 3];
+                    prev = this.head;
+                    while (prev.next !== curr && prev.next) {
+                        prev = prev.next;
+                    }
+                    return [4 /*yield*/, curr.value];
+                case 2:
+                    _a.sent();
+                    curr = prev;
+                    return [3 /*break*/, 1];
+                case 3: return [4 /*yield*/, curr.value];
+                case 4:
+                    _a.sent();
+                    _a.label = 5;
+                case 5: return [2 /*return*/];
             }
         });
     };

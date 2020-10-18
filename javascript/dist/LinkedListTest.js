@@ -26,6 +26,13 @@ console.log(list.toArray())
 const iterator = list.traverse()
 
 
-console.log("iterator.next().value", iterator.next().value)
+console.log("iterator.next().value", iterator.next())
 
-console.log("iterator.next().value", iterator.next().value)
+console.log("iterator.next().value", iterator.next())
+
+
+const reverseIterator = list.reverseTraversal()
+
+console.log("reverse traverse", reverseIterator.next())
+console.log("reverse traverse", reverseIterator.next())
+console.log("reverse traverse", reverseIterator.next())
