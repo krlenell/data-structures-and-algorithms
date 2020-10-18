@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const LinkedListNode_1 = __importDefault(require("./LinkedListNode"));
-class LinkedList {
-    constructor() {
+var LinkedListNode_1 = __importDefault(require("./LinkedListNode"));
+var LinkedList = /** @class */ (function () {
+    function LinkedList() {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
-    add(value) {
-        const node = new LinkedListNode_1.default(value);
+    LinkedList.prototype.add = function (value) {
+        var node = new LinkedListNode_1.default(value);
         if (this.tail === null) {
             this.head = node;
             this.tail = node;
@@ -23,9 +23,9 @@ class LinkedList {
         }
         this.length++;
         return this;
-    }
-    prepend(value) {
-        const node = new LinkedListNode_1.default(value);
+    };
+    LinkedList.prototype.prepend = function (value) {
+        var node = new LinkedListNode_1.default(value);
         if (this.head === null) {
             this.head = node;
             this.tail = node;
@@ -37,12 +37,12 @@ class LinkedList {
         }
         this.length++;
         return this;
-    }
-    contains(value) {
+    };
+    LinkedList.prototype.contains = function (value) {
         if (!this.head) {
             return false;
         }
-        let current = this.head;
+        var current = this.head;
         while (current) {
             if (current.value === value) {
                 return true;
@@ -50,15 +50,15 @@ class LinkedList {
             current = current.next;
         }
         return false;
-    }
-    behead() {
+    };
+    LinkedList.prototype.behead = function () {
         if (this.head === null || this.head.next === undefined) {
             return this;
         }
         this.head = this.head.next;
         this.length--;
         return this;
-    }
+    };
     // remove(value: T): boolean{
     //   if(this.head === null){
     //     return false
@@ -76,18 +76,19 @@ class LinkedList {
     //   let prev: LinkedListNode<T>
     //   return false
     // }
-    toArray() {
-        const returnArray = [];
+    LinkedList.prototype.toArray = function () {
+        var returnArray = [];
         if (!this.head) {
             return returnArray;
         }
-        let curr = this.head;
+        var curr = this.head;
         returnArray.push({ value: curr.value, next: curr.next });
         while (curr.next) {
             curr = curr.next;
             returnArray.push({ value: curr.value, next: curr.next });
         }
         return returnArray;
-    }
-}
+    };
+    return LinkedList;
+}());
 exports.default = LinkedList;
