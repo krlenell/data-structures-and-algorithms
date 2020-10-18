@@ -1,6 +1,7 @@
+import { cursorTo } from 'readline'
 import LinkedListNode from './LinkedListNode'
 
-class LinkedList <T> {
+export default class LinkedList<T> {
   head: null | LinkedListNode<T>
   tail: null | LinkedListNode<T>
   length: number
@@ -43,11 +44,12 @@ class LinkedList <T> {
     if(!this.head){
       return false
     }
-    let current = this.head
-    while(current.next){
+    let current: null | LinkedListNode<T> = this.head
+    while(current){
       if(current.value === value){
         return true
       }
+      current = current.next
     }
     return false
   }
@@ -57,8 +59,40 @@ class LinkedList <T> {
       return this
     }
     this.head = this.head.next
+    this.length--
     return this
   }
-}
 
-export default LinkedList
+  // remove(value: T): boolean{
+  //   if(this.head === null){
+  //     return false
+  //   }
+  //   let curr: LinkedListNode<T> = this.head
+  //   if(curr.value === value){
+  //     if(this.head === this.tail){
+  //       this.head = null
+  //       this.tail = null
+  //       return true
+  //     }
+  //     this.head = this.head.next
+  //     return true
+  //   }
+  //   let prev: LinkedListNode<T>
+
+  //   return false
+  // }
+
+  toArray(): any[] {
+    const returnArray: any[] = []
+    if(!this.head){
+      return returnArray
+    }
+    let curr = this.head
+    returnArray.push({value: curr.value, next: curr.next})
+    while(curr.next){
+      curr = curr.next
+      returnArray.push({ value: curr.value, next: curr.next })
+    }
+    return returnArray
+  }
+}

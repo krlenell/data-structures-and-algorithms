@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var LinkedListNode_1 = __importDefault(require("./LinkedListNode"));
-var LinkedList = /** @class */ (function () {
-    function LinkedList() {
+const LinkedListNode_1 = __importDefault(require("./LinkedListNode"));
+class LinkedList {
+    constructor() {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
-    LinkedList.prototype.add = function (value) {
-        var node = new LinkedListNode_1.default(value);
+    add(value) {
+        const node = new LinkedListNode_1.default(value);
         if (this.tail === null) {
             this.head = node;
             this.tail = node;
@@ -23,9 +23,9 @@ var LinkedList = /** @class */ (function () {
         }
         this.length++;
         return this;
-    };
-    LinkedList.prototype.prepend = function (value) {
-        var node = new LinkedListNode_1.default(value);
+    }
+    prepend(value) {
+        const node = new LinkedListNode_1.default(value);
         if (this.head === null) {
             this.head = node;
             this.tail = node;
@@ -37,19 +37,57 @@ var LinkedList = /** @class */ (function () {
         }
         this.length++;
         return this;
-    };
-    LinkedList.prototype.contains = function (value) {
+    }
+    contains(value) {
         if (!this.head) {
             return false;
         }
-        var current = this.head;
-        while (current.next) {
+        let current = this.head;
+        while (current) {
             if (current.value === value) {
                 return true;
             }
+            current = current.next;
         }
         return false;
-    };
-    return LinkedList;
-}());
+    }
+    behead() {
+        if (this.head === null || this.head.next === undefined) {
+            return this;
+        }
+        this.head = this.head.next;
+        this.length--;
+        return this;
+    }
+    // remove(value: T): boolean{
+    //   if(this.head === null){
+    //     return false
+    //   }
+    //   let curr: LinkedListNode<T> = this.head
+    //   if(curr.value === value){
+    //     if(this.head === this.tail){
+    //       this.head = null
+    //       this.tail = null
+    //       return true
+    //     }
+    //     this.head = this.head.next
+    //     return true
+    //   }
+    //   let prev: LinkedListNode<T>
+    //   return false
+    // }
+    toArray() {
+        const returnArray = [];
+        if (!this.head) {
+            return returnArray;
+        }
+        let curr = this.head;
+        returnArray.push({ value: curr.value, next: curr.next });
+        while (curr.next) {
+            curr = curr.next;
+            returnArray.push({ value: curr.value, next: curr.next });
+        }
+        return returnArray;
+    }
+}
 exports.default = LinkedList;
