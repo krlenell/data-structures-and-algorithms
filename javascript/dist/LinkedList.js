@@ -76,6 +76,9 @@ var LinkedList = /** @class */ (function () {
     //   let prev: LinkedListNode<T>
     //   return false
     // }
+    LinkedList.prototype.getLength = function () {
+        return this.length;
+    };
     LinkedList.prototype.toArray = function () {
         var returnArray = [];
         if (!this.head) {

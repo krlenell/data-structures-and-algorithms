@@ -1,10 +1,9 @@
-import { cursorTo } from 'readline'
 import LinkedListNode from './LinkedListNode'
 
 export default class LinkedList<T> {
-  head: null | LinkedListNode<T>
-  tail: null | LinkedListNode<T>
-  length: number
+  private head: null | LinkedListNode<T>
+  private tail: null | LinkedListNode<T>
+  private length: number
 
   constructor(){
     this.head = null
@@ -81,6 +80,10 @@ export default class LinkedList<T> {
 
   //   return false
   // }
+
+  getLength(): number{
+    return this.length
+  }
 
   toArray(): any[] {
     const returnArray: any[] = []
