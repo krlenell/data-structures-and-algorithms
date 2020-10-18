@@ -12,4 +12,8 @@ export default class Queue<T>{
   dequeue(){
     this.line.shift()
   }
+
+  peek(){
+    this.line[0]
+  }
 }

@@ -79,12 +79,18 @@ var LinkedList = /** @class */ (function () {
         return false;
     };
     LinkedList.prototype.behead = function () {
-        if (this.head === null || this.head.next === undefined) {
-            return this;
+        if (this.head === null) {
+            return null;
         }
+        if (this.head.next === null) {
+            var head_1 = this.head;
+            this.head = null;
+            return head_1;
+        }
+        var head = this.head;
         this.head = this.head.next;
         this.length--;
-        return this;
+        return head;
     };
     LinkedList.prototype.remove = function (value) {
         if (this.head === null) {

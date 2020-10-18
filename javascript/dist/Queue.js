@@ -10,6 +10,9 @@ var Queue = /** @class */ (function () {
     Queue.prototype.dequeue = function () {
         this.line.shift();
     };
+    Queue.prototype.peek = function () {
+        this.line[0];
+    };
     return Queue;
 }());
 exports.default = Queue;
