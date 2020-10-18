@@ -107,4 +107,12 @@ export default class LinkedList<T> {
     }
     return returnArray
   }
+
+  *traverse() {
+    let node = this.head
+    while(node){
+      yield node
+      node = node.next
+    }
+  }
 }

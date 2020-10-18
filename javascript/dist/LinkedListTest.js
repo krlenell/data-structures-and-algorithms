@@ -19,6 +19,13 @@ list.behead()
 list.remove("4")
 
 
+
 console.log(list.toArray())
 
-console.log(list.contains("4"))
+
+const iterator = list.traverse()
+
+
+console.log("iterator.next().value", iterator.next().value)
+
+console.log("iterator.next().value", iterator.next().value)
