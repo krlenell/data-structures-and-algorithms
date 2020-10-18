@@ -52,7 +52,13 @@ class LinkedList <T> {
     return false
   }
 
-
+  behead(): LinkedList<T>{
+    if(this.head === null || this.head.next === undefined){
+      return this
+    }
+    this.head = this.head.next
+    return this
+  }
 }
 
 export default LinkedList
