@@ -62,24 +62,33 @@ export default class LinkedList<T> {
     return this
   }
 
-  // remove(value: T): boolean{
-  //   if(this.head === null){
-  //     return false
-  //   }
-  //   let curr: LinkedListNode<T> = this.head
-  //   if(curr.value === value){
-  //     if(this.head === this.tail){
-  //       this.head = null
-  //       this.tail = null
-  //       return true
-  //     }
-  //     this.head = this.head.next
-  //     return true
-  //   }
-  //   let prev: LinkedListNode<T>
-
-  //   return false
-  // }
+  remove(value: T): boolean{
+    if(this.head === null){
+      return false
+    }
+    let curr: null | LinkedListNode<T> = this.head
+    if(curr.value === value){
+      if(this.head === this.tail){
+        this.head = null
+        this.tail = null
+        return true
+      }
+      this.head = this.head.next
+      return true
+    }
+    let prev: LinkedListNode<T> = curr
+    curr = curr.next
+    while(curr){
+      if(curr.value === value){
+        const next = curr.next
+        prev.next = next
+        return true
+      }
+      prev = curr
+      curr = curr.next
+    }
+    return false
+  }
 
   getLength(): number{
     return this.length

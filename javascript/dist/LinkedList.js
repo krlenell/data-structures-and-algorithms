@@ -59,23 +59,33 @@ var LinkedList = /** @class */ (function () {
         this.length--;
         return this;
     };
-    // remove(value: T): boolean{
-    //   if(this.head === null){
-    //     return false
-    //   }
-    //   let curr: LinkedListNode<T> = this.head
-    //   if(curr.value === value){
-    //     if(this.head === this.tail){
-    //       this.head = null
-    //       this.tail = null
-    //       return true
-    //     }
-    //     this.head = this.head.next
-    //     return true
-    //   }
-    //   let prev: LinkedListNode<T>
-    //   return false
-    // }
+    LinkedList.prototype.remove = function (value) {
+        if (this.head === null) {
+            return false;
+        }
+        var curr = this.head;
+        if (curr.value === value) {
+            if (this.head === this.tail) {
+                this.head = null;
+                this.tail = null;
+                return true;
+            }
+            this.head = this.head.next;
+            return true;
+        }
+        var prev = curr;
+        curr = curr.next;
+        while (curr) {
+            if (curr.value === value) {
+                var next = curr.next;
+                prev.next = next;
+                return true;
+            }
+            prev = curr;
+            curr = curr.next;
+        }
+        return false;
+    };
     LinkedList.prototype.getLength = function () {
         return this.length;
     };

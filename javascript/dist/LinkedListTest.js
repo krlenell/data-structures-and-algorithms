@@ -16,6 +16,8 @@ list.prepend("0")
 
 list.behead()
 
+list.remove("4")
+
 
 console.log(list.toArray())
 
