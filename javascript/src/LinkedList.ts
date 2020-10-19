@@ -53,13 +53,19 @@ export default class LinkedList<T> {
     return false
   }
 
-  behead(): LinkedList<T>{
-    if(this.head === null || this.head.next === undefined){
-      return this
+  behead(): null | LinkedListNode<T>{
+    if(this.head === null){
+      return null
     }
+    if (this.head.next === null){
+      const head = this.head
+      this.head = null
+      return head
+    }
+    const head = this.head
     this.head = this.head.next
     this.length--
-    return this
+    return head
   }
 
   remove(value: T): boolean{
