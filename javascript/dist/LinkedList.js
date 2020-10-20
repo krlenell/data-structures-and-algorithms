@@ -78,6 +78,26 @@ var LinkedList = /** @class */ (function () {
         }
         return false;
     };
+    LinkedList.prototype.find = function (value, callback) {
+        if (value === void 0) { value = undefined; }
+        if (callback === void 0) { callback = undefined; }
+        if (!this.head) {
+            return null;
+        }
+        var current = this.head;
+        while (current) {
+            if (callback && callback(current.value)) {
+                return current;
+            }
+            if (value !== undefined) {
+                if (current.value === value) {
+                    return current;
+                }
+            }
+            current = current.next;
+        }
+        return null;
+    };
     LinkedList.prototype.behead = function () {
         if (this.head === null) {
             return null;
@@ -85,6 +105,7 @@ var LinkedList = /** @class */ (function () {
         if (this.head.next === null) {
             var head_1 = this.head;
             this.head = null;
+            this.length--;
             return head_1;
         }
         var head = this.head;

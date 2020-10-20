@@ -53,14 +53,21 @@ export default class LinkedList<T> {
     return false
   }
 
-  find(value: T): null | LinkedListNode<T>{
+  find(
+      value: T | undefined = undefined, callback: undefined | ((arg: T)=> T) = undefined
+    ){
     if(!this.head){
       return null
     }
     let current: null | LinkedListNode<T> = this.head
     while(current){
-      if(current.value === value){
+      if(callback && callback(current.value)){
         return current
+      }
+      if(value !== undefined){
+        if(current.value === value){
+          return current
+        }
       }
       current = current.next
     }
