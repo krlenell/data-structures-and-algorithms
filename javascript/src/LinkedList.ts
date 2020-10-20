@@ -53,6 +53,20 @@ export default class LinkedList<T> {
     return false
   }
 
+  find(value: T): null | LinkedListNode<T>{
+    if(!this.head){
+      return null
+    }
+    let current: null | LinkedListNode<T> = this.head
+    while(current){
+      if(current.value === value){
+        return current
+      }
+      current = current.next
+    }
+    return null
+  }
+
   behead(): null | LinkedListNode<T>{
     if(this.head === null){
       return null
@@ -60,6 +74,7 @@ export default class LinkedList<T> {
     if (this.head.next === null){
       const head = this.head
       this.head = null
+      this.length--
       return head
     }
     const head = this.head
@@ -105,7 +120,7 @@ export default class LinkedList<T> {
     return this.length
   }
 
-  toArray(): any[] {
+  toArray(): LinkedListNode<T>[] {
     const returnArray: any[] = []
     if(!this.head){
       return returnArray
