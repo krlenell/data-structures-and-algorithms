@@ -10,17 +10,21 @@ function hashFunction(key: string, tableSize: number): number {
 }
 
 class NewHashTable<T> {
-  table = new Array(7);
+  table = new Array<Array<[string, T]>>(7);
 
   get = (key: string) => {
     const index = hashFunction(key, this.table.length);
-    return this.table[index]?.[1];
+    return this.table[index].find((x) => x[0] === key)?.[1];
   };
 
   set = (key: string, value: T) => {
     const index = hashFunction(key, this.table.length);
-    this.table[index] = [key, value];
-    //test if idnex is occupied to chain
+    const pair: [string, T] = [key, value];
+    if (this.table[index]) {
+      this.table[index].push(pair);
+    } else {
+      this.table[index] = [pair];
+    }
   };
 
   //resize
